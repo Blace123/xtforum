@@ -4,7 +4,7 @@ namespace backend\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use common\models\LoginForm;
+use backend\models\LoginForm;
 use yii\filters\VerbFilter;
 
 /**
@@ -36,7 +36,6 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -45,6 +44,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+
     public function actions()
     {
         return [
@@ -64,9 +64,8 @@ class SiteController extends Controller
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->request->post()) && $model->adminlogin()) {
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -81,6 +80,8 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+
 
 
 }

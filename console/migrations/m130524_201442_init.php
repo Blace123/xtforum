@@ -21,10 +21,10 @@ class m130524_201442_init extends Migration
             'password_reset_token' => Schema::TYPE_STRING,
             'email' => Schema::TYPE_STRING . ' NOT NULL',
             'role' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
-
+            'phone' =>Schema::TYPE_STRING. 'NOT NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
-            'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'created_at' => Schema::TYPE_STRING . ' (32)NOT NULL',
+            'updated_at' => Schema::TYPE_STRING . ' (32)NOT NULL',
         ], $tableOptions);
     }
 

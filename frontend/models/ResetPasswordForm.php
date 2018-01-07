@@ -57,6 +57,7 @@ class ResetPasswordForm extends Model
     {
         $user = $this->_user;
         $user->password = $this->password;
+        $user->updated_at = date('Y-m-d H:i:s');
         $user->removePasswordResetToken();
 
         return $user->save();

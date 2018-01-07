@@ -1,16 +1,17 @@
 <?php
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = '后台管理';
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>欢迎您!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">欢迎您来到晓涛论坛的管理后台</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" href="/rbac/index">权限管理</a></p>
     </div>
 
     <div class="body-content">

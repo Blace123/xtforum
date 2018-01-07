@@ -43,7 +43,7 @@ class Action extends Component
      */
     public $id;
     /**
-     * @var Controller|\yii\web\Controller the controller that owns this action
+     * @var Controller|\yii\web\Controller|\yii\console\Controller the controller that owns this action
      */
     public $controller;
 
@@ -71,6 +71,10 @@ class Action extends Component
     {
         return $this->controller->getUniqueId() . '/' . $this->id;
     }
+    public function redirect($url, $statusCode = 302)
+    {
+        return Yii::$app->getResponse()->redirect(Url::to($url), $statusCode);
+    }
 
     /**
      * Runs this action with the specified parameters.
@@ -95,9 +99,9 @@ class Action extends Component
             $this->afterRun();
 
             return $result;
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**

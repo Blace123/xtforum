@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use backend\models\Userdata;
 /**
  * This is the model class for table "user".
  *
@@ -28,6 +28,8 @@ class User extends \yii\db\ActiveRecord
     {
         return 'user';
     }
+
+
 
     /**
      * @inheritdoc
@@ -60,6 +62,11 @@ class User extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    public  function getuserdata(){
+        $userdata = $this->hasOne(Userdata::className(),['user_id'=>'id'])->asArray()->all();
+        return $userdata;
     }
 
 }

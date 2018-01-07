@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use backend\models\Userdata;
 use common\models\User;
 use yii\base\Model;
 use Yii;
@@ -18,6 +19,11 @@ class SignupForm extends Model
     public $verifyCode;
     public $phone;
 
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 0;
+    const ROLE_USER = 10;
+    const Phone_user = null;
+
 
     /**
      * @inheritdoc
@@ -27,7 +33,7 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => '此用户名已被占用'],
             ['username', 'string', 'min' => 5, 'max' => 255, 'message' => '用户名长度不能小于5'],
             ['username', 'match','pattern'=>'/^[(\x{4E00}-\x{9FA5})a-zA-Z]+[(\x{4E00}-\x{9FA5})a-zA-Z_\d]*$/u','message'=>'用户名由字母，汉字，数字，下划线组成，且不能以数字和下划线开头。'],
 
@@ -46,9 +52,6 @@ class SignupForm extends Model
 
             ['phone','match','pattern'=>'/^[1][34578][0-9]{9}$/','message'=>'请输入正确的手机号码'],
             ['phone', 'unique', 'targetClass' => '\common\models\User', 'message' => '手机号已被使用'],
-
-
-
         ];
     }
 
@@ -65,14 +68,22 @@ class SignupForm extends Model
             $user->username = $this->username;
             $user->email = $this->email;
             $user->phone = $this->phone;
-            echo $user->phone;
+            $user->status = self::STATUS_ACTIVE;
+            $user->role = self::ROLE_USER;
+            $user->created_at = date('Y-m-d H:i:s');
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->save();
-            echo "成功";
+            if($user->save()){
+                $userdata = new Userdata();
+                $userdata->id = Uuid::uuid();
+                $userdata->create_at = $user->created_at;
+                $userdata->user_id = $user->id;
+                $userdata->save();
+            }
             return $user;
         }
-        echo "失败";
         return null;
     }
+
 }

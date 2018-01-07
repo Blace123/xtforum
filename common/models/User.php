@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use backend\models\Userdata;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -25,8 +26,12 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 0;
-    const ROLE_USER = 10;
+    const STATUS_ACTIVE = 1;
+    //1为激活状态
+    const ROLE_USER = 17;
+    //17是管理员/版主
+    const ROLE_ADMIN = 66;
+    //66是超级管理员
     const Phone_user = null;
 
     /**
@@ -43,7 +48,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            //TimestampBehavior::className(),
         ];
     }
 
@@ -53,12 +58,6 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-
-            ['role', 'default', 'value' => self::ROLE_USER],
-            ['role', 'in', 'range' => [self::ROLE_USER]],
-
         ];
     }
 
@@ -70,6 +69,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
+
 
     /**
      * @inheritdoc
@@ -87,7 +87,24 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        $model =static::find()->andFilterWhere(['username'=> $username])->orFilterWhere(['email'=>$username])->orFilterWhere(['phone' => $username])->andFilterWhere(['status' => self::STATUS_ACTIVE])->one();
+        if($model){
+            return $model;
+        }
+        else {
+        }
+    }
+    public static function findAdminuser($username)
+    {
+
+       // $model = static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN]);
+       // $model = static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN or ['role' =>self::ROLE_USER]]);
+        //$model = static::find()->where(['username' =>$username])->andWhere(['role'=>self::ROLE_USER])->orWhere(['role'=>self::ROLE_ADMIN])->one();
+        $model =static::find()->andFilterWhere(['role'=> self::ROLE_USER])->orFilterWhere(['role'=>self::ROLE_ADMIN])->andFilterWhere(['username' =>$username])->one();
+        if($model){
+            return $model;
+        }
+
     }
 
     /**
@@ -192,5 +209,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getInfo(){
+        //根据类别查文章；一对多
+        $info = $this->hasMany(Info::className(),['user_id'=>'id'])->asArray()->all();
+        return $info;
+    }
+
+    public function getUserdata(){
+        //根据类别查文章；一对多
+        $info = $this->hasOne(Userdata::className(),['user_id'=>'id'])->asArray()->all();
+        return $info;
     }
 }

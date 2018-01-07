@@ -9,12 +9,14 @@ $form = ActiveForm::begin([
     'action'=>'power',
     'method'=>'post',
 ]) ?>
-<?= $form->field($model, 'power') ?>
 
+<?= $form->field($model, 'power') ?>
+    <div class="site-contact">
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">
             <?= Html::submitButton('添加权限', ['class' => 'btn btn-primary']) ?>
 
         </div>
     </div>
+
 <?php ActiveForm::end() ?>

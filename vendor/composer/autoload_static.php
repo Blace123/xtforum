@@ -15,6 +15,7 @@ class ComposerStaticInit4935652cb96f2abeb25e192d00659649
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\imagine\\' => 12,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -22,6 +23,18 @@ class ComposerStaticInit4935652cb96f2abeb25e192d00659649
             'yii\\codeception\\' => 16,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+        ),
+        'r' => 
+        array (
+            'rmrevin\\yii\\fontawesome\\' => 24,
+        ),
+        'h' => 
+        array (
+            'hyii2\\avatar\\' => 13,
+        ),
+        'd' => 
+        array (
+            'dmstr\\' => 6,
         ),
         'c' => 
         array (
@@ -35,12 +48,20 @@ class ComposerStaticInit4935652cb96f2abeb25e192d00659649
         array (
             'Egulias\\EmailValidator\\' => 23,
         ),
+        'D' => 
+        array (
+            'Dotenv\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
+        ),
+        'yii\\imagine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine',
         ),
         'yii\\gii\\' => 
         array (
@@ -70,6 +91,18 @@ class ComposerStaticInit4935652cb96f2abeb25e192d00659649
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'rmrevin\\yii\\fontawesome\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
+        ),
+        'hyii2\\avatar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hyii2/yii2-avatar',
+        ),
+        'dmstr\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dmstr/yii2-adminlte-asset',
+        ),
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
@@ -82,9 +115,27 @@ class ComposerStaticInit4935652cb96f2abeb25e192d00659649
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
         ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
+        'c' => 
+        array (
+            'cebe\\gravatar\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/cebe/yii2-gravatar',
+            ),
+        ),
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
+            ),
+        ),
         'H' => 
         array (
             'HTMLPurifier' => 

@@ -18,6 +18,8 @@ class RbacController extends Controller{
             ],
         ];
     }
+
+
     public function actionIndex(){
         $model = new Rbac();
         return $this->render('rw',['model'=>$model]);
