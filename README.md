@@ -6,7 +6,7 @@
 页面采用HTML+CSS+Bootstrap3.0进行布局，数据库采用MySQL。
 
 如果您有任何疑问可以联系我们：
-邮箱：linjintaob@qq.com
+邮箱：linjintaob@163.com
 
 
 项目目录结构
