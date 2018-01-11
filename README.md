@@ -1,17 +1,15 @@
-Yii 2 Advanced Application Template
+欢迎来到晓涛论坛
 ===================================
 
-Yii 2 Advanced Application Template is a skeleton Yii 2 application best for
-developing complex Web applications with multiple tiers.
+晓涛论坛是一款基于Yii2框架实现拥有rbac权限管理的在线论坛系统，
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+页面采用HTML+CSS+Bootstrap3.0进行布局，数据库采用MySQL。
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+如果您有任何疑问可以联系我们：
+邮箱：linjintaob@qq.com
 
 
-DIRECTORY STRUCTURE
+项目目录结构
 -------------------
 
 ```
